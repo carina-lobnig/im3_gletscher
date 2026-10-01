@@ -2,7 +2,7 @@
 
 $rawRows = include __DIR__ . '/extract.php';
 
-// Text aus der CSV -> Zahl oder null
+
 function toNumberOrNull($value): ?float
 {
     $value = trim((string) $value);
@@ -16,7 +16,7 @@ function toNumberOrNull($value): ?float
     return (float) $value;
 }
 
-$audit = [
+$audit = [ // zähler fürs protokoll starten (bei 0)
     'input_rows' => 0,
     'invalid_rows' => 0,
     'duplicate_years' => 0,
@@ -27,33 +27,29 @@ $audit = [
 ];
 
 $seenYears = [];
-$transformedRows = [];
+$transformedRows = []; // hier werden bereinigte zahlen abgespeichert
 
-foreach ($rawRows as $raw) {
+foreach ($rawRows as $raw) { // jede zeile wird gezählt
     $audit['input_rows']++;
 
-    // Position statt der langen Spaltennamen aus der CSV
     $values = array_values($raw);
 
     $yearRaw = trim((string) ($values[0] ?? ''));
     $temperature = toNumberOrNull($values[1] ?? null);
 
-    // Pflichtfelder prüfen: erst zählen, dann continue
-    if (!is_numeric($yearRaw) || $temperature === null) {
+    if (!is_numeric($yearRaw) || $temperature === null) { // zeilen ohne jahr und temp werden aussortiert
         $audit['invalid_rows']++;
         continue;
     }
     $year = (int) $yearRaw;
 
-    // Deduplizieren: jedes Jahr nur einmal
-    if (isset($seenYears[$year])) {
+    if (isset($seenYears[$year])) { // jedes jahr wirkich nur einmal übernehmen
         $audit['duplicate_years']++;
         continue;
     }
     $seenYears[$year] = true;
 
-    // Umbenennen auf den Datenvertrag + Zahlen bereinigen
-    $row = [
+    $row = [ // umbenennen und bereinigen
         'year' => $year,
         'temperature_change_c' => $temperature,
         'glacier_area_km2' => toNumberOrNull($values[2] ?? null),
@@ -62,7 +58,7 @@ foreach ($rawRows as $raw) {
         'sea_level' => toNumberOrNull($values[5] ?? null),
     ];
 
-    // Fehlende Werte ins Audit
+// fehlende werte zählen
     if ($row['glacier_area_km2'] === null) { $audit['missing_glacier_area']++; }
     if ($row['mmsle'] === null)            { $audit['missing_mmsle']++; }
     if ($row['mmsle_cumsum'] === null)     { $audit['missing_mmsle_cumsum']++; }
@@ -71,14 +67,14 @@ foreach ($rawRows as $raw) {
     $transformedRows[] = $row;
 }
 
-// Sortieren nach Jahr
+// nach jahr aufsteigend sortieren
 usort($transformedRows, function (array $a, array $b): int {
     return $a['year'] <=> $b['year'];
 });
 
 $audit['output_rows'] = count($transformedRows);
 
-// Rückgabe ist ein PHP-Array, kein JSON
+// ergebnisse zurpckgeben
 return [
     'question' => 'Wie wirkt sich die steigende Temperatur auf die Gletschermasse weltweit aus und welche Folgen hat dies auf den Meeresspiegel?',
     'data' => $transformedRows,
