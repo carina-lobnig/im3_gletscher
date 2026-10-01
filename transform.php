@@ -1,9 +1,6 @@
 <?php
-$rawRows = include __DIR__ . '/extract.php';
 
 $rawRows = include __DIR__ . '/extract.php';
-var_dump($rawRows);
-exit;
 
 // Text aus der CSV -> Zahl oder null
 function toNumberOrNull($value): ?float
@@ -27,7 +24,6 @@ $audit = [
     'missing_mmsle' => 0,
     'missing_mmsle_cumsum' => 0,
     'missing_sea_level' => 0,
-    'output_rows' => 0,
 ];
 
 $seenYears = [];

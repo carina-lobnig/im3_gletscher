@@ -1,4 +1,4 @@
-﻿year;temperature_change;glacier_area_km2 (Fläche in m^2);mmsle (jährlicher Beitrag der Gletschermassenänderung zum globalen Meeresspiegel);mmsle_cumsum (kummulierter Beitrag zum Meeresspiegel seit Beginn der Zeitreihe);sea_level (Veränderung seit Beginn der Messzeit)
+﻿year;temperature_change;glacier_area_km2 (Fläche in km^2);mmsle (jährlicher Beitrag der Gletschermassenänderung zum globalen Meeresspiegel);mmsle_cumsum (kummulierter Beitrag zum Meeresspiegel seit Beginn der Zeitreihe);sea_level (Veränderung seit Beginn der Messzeit)
 1970;0,271430661;null;null;null;null
 1971;0,150605691;null;null;null;null
 1972;0,262703431;null;null;null;null
