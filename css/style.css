@@ -19,6 +19,8 @@ body {
     --col-hellblau: #d6e6ea;
     --col-dunkelblau: #063944;
     --col-rot: #9f0b0d;
+
+    --margin-rand: 10vw;
 }
 
 * {
@@ -29,8 +31,8 @@ body {
 
 h1 {
     font-weight: 900;
-    font-size: 10rem;
-    z-index: 99;
+    font-size: 13.5vw;
+
 }
 
 h2 {
@@ -39,8 +41,7 @@ h2 {
 
 h3 {
     font-weight: 900;
-    font-size: 2rem;
-
+    font-size: 2.4vw;
 }
 
 h4 {
@@ -53,10 +54,109 @@ h4 {
     margin: clamp(2rem, 9vw, 8rem); /* (min, preferred, max) */
 }
 
-.header {
-    position: absolute;
+/* header ist der Bezugspunkt für alle Elemente darin.
+   Die Prozentwerte der Titel-Wörter beziehen sich auf seine Grösse. */
+header {
+    position: relative;
+}
+
+#header {
+    display: block;
     width: 100%;
     height: auto;
-    top: 0;
-    z-index: 1;
+}
+
+/* Titel */
+.title h1,
+.title h3 {
+    position: fixed;
+    z-index: 20;
+    line-height: 1;
+    white-space: nowrap;        /* Wort wird nie umgebrochen */
+    color: var(--col-weiss);
+    transition: left 0.8s ease, top 0.8s ease;  /* Animation: Wenn sich left oder top ändern, gleitet das Wort in 0.8 Sekunden an die neue Stelle */
+    text-box: trim-both cap alphabetic;  /* leeren Platz oben und unten abschneiden */
+}
+
+
+/* Zustand: ganz oben, Titel in der Mitte */
+.oben #vom  { left: 17%; top: 34%; }
+.oben #eis  { left: 24%; top: 34%; }
+.oben #zum  { left: 38%; top: 58.1%; }
+.oben #meer { left: 45%; top: 44%; }
+
+/* Zustand: nach unten gescrollt, Titel links */
+#vom  { left: 7.7%; top: 14%; }
+#eis  { left: 6.8%; top: 20.5%; }
+#zum  { left: 7.7%; top: 42%; }
+#meer { left: 6.8%; top: 49%; }
+
+/* Bild und Text teilen sich dieselbe Zelle, liegen also übereinander */
+.intro {
+    display: grid;
+}
+
+.intro > * {
+    grid-area: 1 / 1;      /* beide Elemente in Zeile 1, Spalte 1 */
+}
+
+#hintergrund_hell {
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 10;
+}
+
+/* Textblock liegt vor dem Bild */
+.intro .text {
+    position: relative;
+    z-index: 30;
+    align-self: start;                    /* Text beginnt oben im Abschnitt */
+    margin-top: 6vw;                      /* Abstand nach oben */
+    margin-left: 38%;                     /* Text beginnt rechts von der Mitte, wie im Wireframe */
+    margin-right: var(--margin-rand);
+    color: var(--col-dunkelblau);
+}
+
+.intro h2 {
+    color: var(--col-rot);
+    font-weight: 900;
+    font-size: 1.6vw;
+    margin-bottom: 0.5rem;
+}
+
+.intro p {
+    font-size: 1.1vw;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+#chart {
+    z-index: 50;
+    position: relative;
+}
+
+#chart2 {
+    z-index: 50;
+    position: relative;
+}
+
+.box {
+    background-color: var(--col-weiss);
+    border: 6px solid var(--col-hellblau);
+    border-radius: 40px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 900px;
+
+    position: relative;
+    z-index: 40;
+
+    margin: var(--margin-rand) auto;  /* oben/unten: 10vw, links/rechts: automatisch mittig */
+}
+
+#hintergrund_dunkel {
+    width: 100%;
+    height: auto;
+    bottom: 0;
 }
