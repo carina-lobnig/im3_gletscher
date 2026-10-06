@@ -17,10 +17,12 @@ body {
 :root {
     --col-weiss: #ffffff;
     --col-hellblau: #d6e6ea;
-    --col-dunkelblau: #063944;
-    --col-rot: #9f0b0d;
+    --col-dunkelblau: #062b42;
+    --col-blau: #376E80;
+    --col-rot: #ff9224;
 
-    --margin-rand: 10vw;
+    --margin-rand: 9vw;
+    --margin-klein: 3vw
 }
 
 * {
@@ -36,7 +38,8 @@ h1 {
 }
 
 h2 {
-
+    font-weight: 850;
+    font-size: 2vw;
 }
 
 h3 {
@@ -45,7 +48,22 @@ h3 {
 }
 
 h4 {
+    font-weight: 400;
+    font-size: 1.1rem;
+}
 
+h5 {
+    font-weight: 400;
+    font-size: 1rem;
+    column-count: 2;      /* Text auf zwei Spalten verteilen */
+    column-gap: var(--margin-klein);     /* Abstand zwischen den Spalten */
+
+    color: var(--col-dunkelblau);
+}
+
+h6 {
+    font-weight: 700;
+    font-size: 0.7rem;
 }
 
 /* MAIN */
@@ -113,23 +131,54 @@ header {
     z-index: 30;
     align-self: start;                    /* Text beginnt oben im Abschnitt */
     margin-top: 6vw;                      /* Abstand nach oben */
-    margin-left: 38%;                     /* Text beginnt rechts von der Mitte, wie im Wireframe */
+    margin-left: 50%;                     /* Text beginnt rechts von der Mitte, wie im Wireframe */
     margin-right: var(--margin-rand);
+    color: var(--col-blau);
+}
+
+.intro .text2 {
+    position: relative;
+    z-index: 30;
+    align-self: start;                    /* Text beginnt oben im Abschnitt */
+    margin-top: 14vw;                      /* Abstand nach oben */
+    margin-left: 50%;                     /* Text beginnt rechts von der Mitte, wie im Wireframe */
+    margin-right: var(--margin-rand);
+    color: var(--col-hellblau);
+}
+
+
+/* Gemeinsamer Container: bestimmt Breite und Mitte für Titel und Box */
+#grafik1 {
+    width: calc(100% - 2 * var(--margin-rand));  /* Platz für den Seitenrand lassen */
+    max-width: 900px;
+    margin: -20vw auto 0;           /* mittig; oben 10vw, unten 0, negativer Wert zieht die Grafik nach oben */
+
+    position: relative;
+    z-index: 40;
+
     color: var(--col-dunkelblau);
 }
 
-.intro h2 {
-    color: var(--col-rot);
-    font-weight: 900;
-    font-size: 1.6vw;
-    margin-bottom: 0.5rem;
+#grafik1 h2{
+    margin-bottom: var(--margin-klein);
 }
 
-.intro p {
-    font-size: 1.1vw;
-    line-height: 1.5;
-    margin-bottom: 1rem;
+/* Gemeinsamer Container: bestimmt Breite und Mitte für Titel und Box */
+#grafik2 {
+    width: calc(100% - 2 * var(--margin-rand));  /* Platz für den Seitenrand lassen */
+    max-width: 900px;
+    margin: var(--margin-rand) auto var(--margin-rand);           /* mittig; oben 10vw, unten 0, negativer Wert zieht die Grafik nach oben */
+
+    position: relative;
+    z-index: 40;
+
+    color: var(--col-dunkelblau);
 }
+
+#grafik2 h2{
+    margin-bottom: var(--margin-klein);
+}
+
 
 #chart {
     z-index: 50;
@@ -152,11 +201,26 @@ header {
     position: relative;
     z-index: 40;
 
-    margin: var(--margin-rand) auto;  /* oben/unten: 10vw, links/rechts: automatisch mittig */
+    margin-bottom: var(--margin-klein);
 }
 
 #hintergrund_dunkel {
     width: 100%;
     height: auto;
     bottom: 0;
+    display: block;
+}
+
+.footer {
+    background-color: var(--col-dunkelblau);
+    width: 100%;
+    height: 10vw;
+    padding: var(--margin-rand);
+    padding-bottom: var(--margin-klein);
+
+    color: var(--col-hellblau);
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: space-between;
 }
