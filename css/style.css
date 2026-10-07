@@ -49,8 +49,21 @@ h3 {
 
 h4 {
     font-weight: 400;
-    font-size: 1.1rem;
+    font-size: 1.4vw;
 }
+
+@media (max-width: 1100px) {
+    h4 {
+        font-size: 1.7vw;
+    }
+}
+
+@media (max-width: 750px) {
+    h4 {
+        font-size: 2vw;
+    }
+}
+
 
 h5 {
     font-weight: 400;
@@ -98,32 +111,47 @@ header {
 
 
 /* Zustand: ganz oben, Titel in der Mitte */
-.oben #vom  { left: 17%; top: 34%; }
-.oben #eis  { left: 24%; top: 34%; }
-.oben #zum  { left: 38%; top: 58.1%; }
-.oben #meer { left: 45%; top: 44%; }
+.oben #vom  { left: 17vw; top: 17vw; }
+.oben #eis  { left: 24vw; top: 17vw; }
+.oben #zum  { left: 38vw; top: 29.6vw; }
+.oben #meer { left: 45vw; top: 22vw; }
 
 /* Zustand: nach unten gescrollt, Titel links */
-#vom  { left: 7.7%; top: 14%; }
-#eis  { left: 6.8%; top: 20.5%; }
-#zum  { left: 7.7%; top: 42%; }
-#meer { left: 6.8%; top: 49%; }
+#vom  { left: 7.7vw; top: 7vw;}
+#eis  { left: 6.8vw; top: 10.25vw; }
+#zum  { left: 7.7vw; top: 21.4vw;}
+#meer { left: 6.8vw; top: 24.5vw; }
 
 /* Bild und Text teilen sich dieselbe Zelle, liegen also übereinander */
 .intro {
     display: grid;
+    position: relative;
 }
 
-.intro > * {
-    grid-area: 1 / 1;      /* beide Elemente in Zeile 1, Spalte 1 */
+
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
+
+.text2 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 
 #hintergrund_hell {
-    display: block;
+    position: absolute;
+    inset: 0;                        /* Bild füllt den Abschnitt in Breite und Höhe */
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: fill;                /* Bild darf sich strecken */
     z-index: 10;
 }
+
 
 /* Textblock liegt vor dem Bild */
 .intro .text {
@@ -134,6 +162,7 @@ header {
     margin-left: 50%;                     /* Text beginnt rechts von der Mitte, wie im Wireframe */
     margin-right: var(--margin-rand);
     color: var(--col-blau);
+    padding-bottom: 59vw;
 }
 
 .intro .text2 {
@@ -151,7 +180,7 @@ header {
 #grafik1 {
     width: calc(100% - 2 * var(--margin-rand));  /* Platz für den Seitenrand lassen */
     max-width: 900px;
-    margin: -20vw auto 0;           /* mittig; oben 10vw, unten 0, negativer Wert zieht die Grafik nach oben */
+    margin: -25vw auto 0;           /* mittig; oben 10vw, unten 0, negativer Wert zieht die Grafik nach oben */
 
     position: relative;
     z-index: 40;
