@@ -28,3 +28,19 @@ window.addEventListener('scroll', updateTitle, { passive: true });
 // Einmal beim Laden ausführen, damit der richtige Zustand
 // von Anfang an stimmt (auch wenn die Seite schon etwas gescrollt ist).
 updateTitle();
+
+
+
+
+const seitenKopf = document.querySelector("header");
+
+function pruefeSeitenende() {
+    const amEnde =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 600;
+
+    seitenKopf.classList.toggle("ende", amEnde);
+}
+
+window.addEventListener("scroll", pruefeSeitenende);
+pruefeSeitenende();

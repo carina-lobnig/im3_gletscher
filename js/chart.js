@@ -30,10 +30,8 @@ const config = {
     data: data,
     options: {
         responsive: true,
+        maintainAspectRatio: false,   // wichtig: nutzt die Höhe des Containers
         interaction: { mode: 'index', intersect: false },
-        plugins: {
-            // title: { display: true, text: 'Temperatur und Meeresspiegel 1970–2024' }
-        },
         scales: {
             y: {
                 type: 'linear',
@@ -87,6 +85,7 @@ const config2 = {
     data: data2,
     options: {
         responsive: true,
+        maintainAspectRatio: false,   // wichtig: nutzt die Höhe des Containers
         scales: {
             y: {
                 type: 'linear',

@@ -42,6 +42,26 @@ h2 {
     font-size: 2vw;
 }
 
+@media (max-width: 1100px) {
+    h2 {
+        font-size: 2.2vw;
+    }
+}
+
+@media (max-width: 750px) {
+    h2 {
+        font-size: 2.7vw;
+    }
+}
+
+@media (max-width: 500px) {
+    h2 {
+        font-size: 3.5vw;
+    }
+}
+
+
+
 h3 {
     font-weight: 900;
     font-size: 2.4vw;
@@ -64,19 +84,55 @@ h4 {
     }
 }
 
+@media (max-width: 500px) {
+    h4 {
+        font-size: 2.2vw;
+    }
+}
+
 
 h5 {
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 1.3vw;
     column-count: 2;      /* Text auf zwei Spalten verteilen */
     column-gap: var(--margin-klein);     /* Abstand zwischen den Spalten */
 
     color: var(--col-dunkelblau);
 }
 
+@media (max-width: 1100px) {
+    h5 {
+        font-size: 1.8vw;
+    }
+}
+
+@media (max-width: 750px) {
+    h5 {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 450px) {
+    h5 {
+        font-size: 3vw;
+    }
+}
+
 h6 {
     font-weight: 700;
-    font-size: 0.7rem;
+    font-size: 0.7vw;
+}
+
+@media (max-width: 1100px) {
+    h6 {
+        font-size: 1vw;
+    }
+}
+
+@media (max-width: 750px) {
+    h6 {
+        font-size: 1.2vw;
+    }
 }
 
 /* MAIN */
@@ -117,10 +173,16 @@ header {
 .oben #meer { left: 45vw; top: 22vw; }
 
 /* Zustand: nach unten gescrollt, Titel links */
-#vom  { left: 7.7vw; top: 7vw;}
+#vom  { left: 7.7vw; top: 7vw; }
 #eis  { left: 6.8vw; top: 10.25vw; }
-#zum  { left: 7.7vw; top: 21.4vw;}
+#zum  { left: 7.7vw; top: 21.4vw; }
 #meer { left: 6.8vw; top: 24.5vw; }
+
+/* Zustand: Seitenende, Titel am linken Rand, vertikal in der Bildschirmmitte */
+header.ende #vom  { left: 7.7vw; top: calc(50vh - 13.5vw); }
+header.ende #eis  { left: 6.8vw; top: calc(50vh - 13.5vw + 3.25vw); }
+header.ende #zum  { left: 7.7vw; top: calc(50vh - 13.5vw + 14.4vw); }
+header.ende #meer { left: 6.8vw; top: calc(50vh - 13.5vw + 17.5vw); }
 
 /* Bild und Text teilen sich dieselbe Zelle, liegen also übereinander */
 .intro {
@@ -128,7 +190,7 @@ header {
     position: relative;
 }
 
-
+.intro > * { grid-area: 1 / 1; }
 
 .text {
     display: flex;
@@ -173,6 +235,7 @@ header {
     margin-left: 50%;                     /* Text beginnt rechts von der Mitte, wie im Wireframe */
     margin-right: var(--margin-rand);
     color: var(--col-hellblau);
+    padding-bottom: 20vw;
 }
 
 
@@ -224,8 +287,6 @@ header {
     border: 6px solid var(--col-hellblau);
     border-radius: 40px;
     padding: 1rem;
-    width: 100%;
-    max-width: 900px;
 
     position: relative;
     z-index: 40;
@@ -234,10 +295,12 @@ header {
 }
 
 #hintergrund_dunkel {
+    position: absolute;
+    inset: 0;                        /* Bild füllt den Abschnitt in Breite und Höhe */
     width: 100%;
-    height: auto;
-    bottom: 0;
-    display: block;
+    height: 100%;
+    object-fit: fill;                /* Bild darf sich strecken */
+    z-index: 10;
 }
 
 .footer {
@@ -245,7 +308,7 @@ header {
     width: 100%;
     height: 10vw;
     padding: var(--margin-rand);
-    padding-bottom: var(--margin-klein);
+
 
     color: var(--col-hellblau);
     display: flex;
