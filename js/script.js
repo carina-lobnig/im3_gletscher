@@ -31,7 +31,6 @@ updateTitle();
 
 
 
-
 const seitenKopf = document.querySelector("header");
 
 function pruefeSeitenende() {
